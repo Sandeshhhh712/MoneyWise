@@ -18,7 +18,8 @@ def RegisterUserView(request):
             user = form.save(commit=False)
             user.password = make_password(form.cleaned_data['password'])
             user.save()
-        return render(request, 'register.html', context={"form":form, "error":"Invalid entry"})
+            return render(request, 'register.html', context={"form":form})
+        return render(request, 'register.html', context={"form":form})
 
     return render(request, 'register.html', {"form": form})
 
