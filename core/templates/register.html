@@ -8,19 +8,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Join MoneyWise Today</h1>
-        <input type="text" placeholder="First Name">
-        <br>
-        <input type="text" placeholder="Last Name">
-        <br>
-        <input type="number" placeholder="Age">
-        <br>
-        <input type="email" placeholder="Email">
-        <br>
-        <input type="password" placeholder="Password">
-        <br>
-        <button type="submit">Register!</button>
-    </div>
+    <form method="post">
+    <div class="container" >
+        
+            {% csrf_token %}
+                <h1>Join MoneyWise Today</h1>
+                {% if error %}
+                     <p style="color: red; text-align: center;">{{ error }}</p>
+                {% endif %}
+                <br>
+                <input type="text" placeholder="First Name", name="first_name">
+                <br>
+                <input type="text" placeholder="Last Name", name="last_name">
+                <br>
+                <input type="number" placeholder="Age", name="Age">
+                <br>
+                <input type="email" placeholder="Email", name="email">
+                <br>
+                <input type="password" placeholder="Password", name="password">
+                <br>
+                <button type="submit">Register!</button>
+            </div>
+    </form>
+
+    
 </body>
 </html>
