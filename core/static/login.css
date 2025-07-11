@@ -1,0 +1,72 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f2f4f7;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div {
+  background-color: white;
+  min-width: 400px;
+  min-height: 320px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+div:hover {
+    outline: none;
+    border-color: #007b5e;
+    box-shadow: 0 0 0 2px rgb(6, 44, 35)
+}
+
+h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #222;
+}
+
+input, button {
+  width: 100%;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  padding: 0 0.75rem;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007b5e;
+  box-shadow: 0 0 0 2px rgba(0, 123, 94, 0.2);
+}
+
+button {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: rgb(4, 104, 4);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+button:hover {
+  background-color: green;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
