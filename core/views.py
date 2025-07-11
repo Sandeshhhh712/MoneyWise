@@ -5,6 +5,7 @@ from django.contrib.auth import login as authenticate
 from .models import User
 from .form import RegisterUserForm, LoginForm
 
+
 # Create your views here.
 
 def RegisterUserView(request:HttpRequest):
@@ -31,4 +32,4 @@ def LoginView(request:HttpRequest):
         if user==None:
             return render(request, 'login.html', {"form":form, "error":" Invalid email or password"})
         
-        return redirect()
+        return redirect('Register')
