@@ -233,7 +233,7 @@ body{
 }
 
 .transactions-title {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 600;
     color: #333;
 }
@@ -242,14 +242,14 @@ body{
     color: #667eea;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .transaction-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     border-bottom: 1px solid #f8f9fa;
 }
 
@@ -275,20 +275,20 @@ body{
 }
 
 .transaction-details h4 {
-    font-size: 0.95rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: #333;
     margin-bottom: 0.2rem;
 }
 
 .transaction-details p {
-    font-size: 0.8rem;
+    font-size: 1.3rem;
     color: #666;
 }
 
 .transaction-amount {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .amount-negative {
