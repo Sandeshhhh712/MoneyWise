@@ -83,6 +83,10 @@ body{
     color: rgba(0, 0, 0, 0.599);
 }
 
+a{
+    text-decoration: none;
+}
+
 .boxes{
     max-width: 1700px;
     display: grid;
