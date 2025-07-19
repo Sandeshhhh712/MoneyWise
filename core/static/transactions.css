@@ -87,6 +87,7 @@ a{
 
 .Text{
     padding-top: 50px;
+    padding-bottom: 20px;
     max-width: 1700px;
     margin: 0 auto;
     justify-content: left;
@@ -97,7 +98,7 @@ a{
     margin-top:40px;
     font-size: 40px;
     color: rgba(46, 46, 46, 0.939);
-    font-weight: 900;
+    font-weight: 500;
 }
 
 #haude{
@@ -109,38 +110,144 @@ a{
     color: rgba(0, 0, 0, 0.599);
 }
 
-a{
-    text-decoration: none;
+.filter-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 1700px;
+    margin: 2px auto;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: white;
+    border: rgb(234, 233, 233) 2px solid;
+    box-shadow: 0 4px 8px rgba(0, 0,0, 0.1);
+}
+
+
+.top-box{
+    flex: 1;
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.top-box h3{
+    margin-right: auto;
+    font-size:24px;
+    font-weight: 500;
+    padding: 10px;
+}
+
+.top-box a{
+    padding: 10px;
+    color: blue;
+}
+
+.middle-box{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    gap: 20px;
+}
+
+.search{
+    display: flex;
+    flex-direction: column;
+}
+
+.search input{
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: rgb(227, 222, 222) solid 2px;
+}
+
+.search input:focus{
+    outline: none;
+    border: 1px solid blue;
+}
+
+.search label{
+    color: rgb(91, 88, 88);
+    font-size: 24px;
+    padding: 4px;
+    margin-bottom: 10px;
+}
+
+.Category{
+    display: flex;
+    flex-direction: column;
+}
+
+.Category select{
+    padding: 16px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: rgb(227, 222, 222) solid 2px;
+}
+
+.Category select:focus{
+     outline: none;
+    border: 1px solid blue;
+}
+
+.Category label{
+    color: rgb(91, 88, 88);
+    font-size: 18px;
+    padding: 4px;
+    margin-bottom: 10px;
+}
+
+.bottom-box{
+    display: flex;
+    margin-top: 20px;
+    gap: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+button{
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px rgb(219, 218, 218) solid;
+    background-color: white;
+    font-size: 18px;
+    color: rgb(58, 59, 60);
+
+}
+
+button:hover {
+  background-color: #f5faff;
+  border: rgb(75, 184, 220) solid 1px;
+}
+
+.btn.active{
+    background-color: #19798c;
+  color: white;
 }
 
 .boxes{
     max-width: 1700px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px,2fr));
     gap: 2.2rem;
     margin: 2rem auto;
-    padding: 0 1.5rem;
 }
 
 .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   background-color:white;
-  padding: 1.5rem;
-  text-align: center;
+  padding: 0.6rem;
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   transition: transform 0.3s ease , box-shadow 0.3s ease;
 }
 
-.box:hover{
-    transform:translateY(-5px) ;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.2);
-    cursor: pointer;
-}  
-
 .box .header{
-    margin-top: 10px;
+    margin-top: 15px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 #total{
@@ -148,38 +255,18 @@ a{
     margin-right: auto;
     height: 30px;
     font-size: 18px;
+    text-align: center;
     color: rgb(79, 80, 81);
 
 }
 
-#icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: red;
-    height: 50px;
-    width: 50px;
-    border-radius: 14px;
-    margin-right: 5px;
-    color: white;
-    background: linear-gradient(165deg , #667eea, #764ba2);
-    font-size: 25px;
-}
-
 .Total.amount{
-    margin-top: 0.7rem;
+    margin-top: 0.2rem;
     padding: 10px;
     font-size: 3rem;
     text-align: start;
-    font-weight: 600;
     color: #667eea;
     font-weight: 700;
-}
-
-.change{
-    text-align: start;
-    color: rgb(89, 255, 47);
-    padding: 10px;
 }
 
 .box.two #icon{
@@ -214,65 +301,31 @@ a{
     color: #43e97b;
 }
 
-.charts{
+.history{
     max-width: 1700px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px,1fr));
-    gap: 2.2rem;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-
-.chart1{
-    background-color:white;
-  padding: 1.5rem;
-  text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease , box-shadow 0.3s ease;
-}
-
-.chart2{
-    background-color:white;
-  padding: 1.5rem;
-  text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease , box-shadow 0.3s ease;
-}
-
-.container{
-    max-width: 1700px;
-    padding: 0 20px;
+    padding: 20px;
     margin: 0 auto;
-}
-
-.transactions-section {
-    background: white;
-    padding: 1.5rem;
+    background-color: white;
     border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e9ecef;
+    border: rgb(234, 233, 233) 2px solid;
+    box-shadow: 0 4px 8px rgba(0, 0,0, 0.1);
 }
 
-.transactions-header {
+.history .header{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
+    padding: 30px;
 }
 
-.transactions-title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #333;
-}
-
-.view-all-btn {
-    color: #667eea;
-    text-decoration: none;
+.header h2{
+    margin-right: auto;
+    font-size: 28px;
     font-weight: 500;
-    font-size: 1rem;
+}
+
+.header p{
+    margin-left: 10px;
+    font-size: 18px;
+    color: #878987;
 }
 
 .transaction-item {
@@ -283,6 +336,11 @@ a{
     border-bottom: 1px solid #f8f9fa;
 }
 
+.transaction-item:hover{
+    transform: translateX(-5px);
+    transition: transform 0.1s ease 
+}
+
 .transaction-item:last-child {
     border-bottom: none;
 }
@@ -291,17 +349,6 @@ a{
     display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-.transaction-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    color: white;
 }
 
 .transaction-details h4 {

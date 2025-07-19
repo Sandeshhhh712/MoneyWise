@@ -10,9 +10,16 @@
 <body>
     <div class="navbar">
         <div class="content">
-        <h1>MoneyWise</h1>
-        <h3>Welcome back, {{ user}}</h3>
-        <div id="pfp"></div>
+            <h1>MoneyWise</h1>
+            <div class="href">
+            <a href="/core/templates/transactions.html">Transaction</a>
+            <a href="#">Budget</a>
+            <a href="#">Report</a>
+            </div>
+            <div class="naam">
+            <h3>Sandesh Dhakal</h3>
+            <div id="pfp">S</div>
+            </div>
         </div>
     </div>
     <div class="Text">
@@ -20,38 +27,38 @@
         <p id="haude">Track your money and make informed decisions</p>
     </div>
     <div class="boxes">
-        <div class="box">
+        <a href="#"><div class="box">
             <div class="header">
                 <div id='total'>Total Balance</div>
                 <div id="icon">💰</div>
             </div>
-            <div class="Total amount">रु {{balance}}</div>
-            <div class="change">{{ balance_percentage }}</div>
-        </div>
-        <div class="box two">
+            <div class="Total amount"> रु 9,800</div>
+            <div class="change">+6% from last month</div>
+        </div></a>
+        <a href="#"><div class="box two">
             <div class="header">
                 <div id='total'>Monthly Income</div>
                 <div id="icon">📈</div>
             </div>
-            <div class="Total amount">रु {{income}}</div>
-            <div class="change">{{income_percentage}}</div>
-        </div>
-        <div class="box three">
+            <div class="Total amount"> रु 12,800</div>
+            <div class="change">+2% from last month</div>
+        </div></a>
+        <a href="#"><div class="box three">
             <div class="header">
                 <div id='total'>Monthly Expenses</div>
                 <div id="icon">📉</div>
             </div>
-            <div class="Total amount">रु {{expense}}</div>
-            <div class="change">{{expense_percentage}}</div>
-        </div>
-        <div class="box four">
+            <div class="Total amount"> रु 22,150</div>
+            <div class="change">+12% from last month</div>
+        </div></a>
+        <a href="#"><div class="box four">
             <div class="header">
                 <div id='total'>Monthly Savings</div>
                 <div id="icon">💎</div>
             </div>
-            <div class="Total amount">रु {{savings}}</div>
-            <div class="change">{{savings_percentage}}</div>
-        </div>
+            <div class="Total amount"> रु 800</div>
+            <div class="change">-8.5% from last month</div>
+        </div></a>
     </div>
     <div class="charts">
         <div class="chart1">
