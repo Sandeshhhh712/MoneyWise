@@ -67,18 +67,18 @@
                 <h3 class="transactions-title">Recent Transactions</h3>
                 <a href="#" class="view-all-btn">View All</a>
             </div>
-
-            <div class="transaction-item">
-                <div class="transaction-info">
-                    <div class="transaction-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">🍕</div>
-                    <div class="transaction-details">
-                        <h4>Pizza Palace</h4>
-                        <p>Food & Dining • Today, 2:30 PM</p>
+            {% for i in transaction%}
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+                        <div class="transaction-details">
+                            <h4>{{i.category}}</h4>
+                            <p>{{i.description}} •        {{i.created_at}}</p>
+                        </div>
                     </div>
+                    <div class="transaction-amount amount-negative">{{i.amount}}</div>
                 </div>
-                <div class="transaction-amount amount-negative">-$24.99</div>
-            </div>
-
+            {% endfor %}
 
 
         </div>

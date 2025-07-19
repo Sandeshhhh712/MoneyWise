@@ -7,6 +7,8 @@ from .models import User, Expense, Income, Savings
 from .form import RegisterUserForm, LoginForm, ExpenseForm, IncomeForm, SavingsForm
 from datetime import datetime, timedelta
 from django.utils import timezone
+from itertools import chain
+from operator import itemgetter
 
 # Create your views here.
 
@@ -242,7 +244,27 @@ def IndexView(request:HttpRequest):
                 else:
                     balance_percentage="Same as last month"
             
-            return render(request, 'index.html', context={"user":user.first_name,"expense":total_expense, "income":total_income, "savings":total_savings, "balance":balance, "expense_percentage": expense_percentage, "income_percentage":income_percentage, "savings_percentage":savings_percentage, "balance_percentage":balance_percentage})
+            recent_expense=Expense.objects.filter(user_id=user).order_by('-created_at')[:10]
+            recent_income=Income.objects.filter(user_id=user).order_by('-created_at')[:10]
+
+
+            expense_data=[
+                {"amount":f"-{e.amount}", "category":e.category,"description":e.description, "created_at":e.created_at}
+                for e in recent_expense
+            ]
+
+            income_data=[
+                {"amount":f"+{i.amount}", "category":"Income","description":i.description, "created_at":i.created_at}
+                for i in recent_income
+            ]
+
+            transaction=sorted(
+                chain(income_data, expense_data),
+                key=itemgetter('created_at'),
+                reverse=True
+            )
+
+            return render(request, 'index.html', context={"user":user.first_name,"expense":total_expense, "income":total_income, "savings":total_savings, "balance":balance, "expense_percentage": expense_percentage, "income_percentage":income_percentage, "savings_percentage":savings_percentage, "balance_percentage":balance_percentage, "transaction":transaction})
         except User.DoesNotExist:
             return redirect('Login')    
     return redirect('Login')     
