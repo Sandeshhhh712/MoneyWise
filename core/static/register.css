@@ -23,13 +23,13 @@
       display: flex;
       flex-direction: column;
       gap: 0.1rem;
-    }
+      /* Animation */
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
 
-    .container:hover {
-      outline: none;
-      border-color: #007b5e;
-      box-shadow: 0 0 0 2px rgb(6, 44, 35);
-    }
+
 
     h1 {
     margin-bottom: 8px;
@@ -72,3 +72,16 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     }
+
+.redirect{
+  padding: 10px;
+  color: gray;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -19,14 +19,14 @@ div {
   min-height: 320px;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+/* Animation */
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
-div:hover {
-    outline: none;
-    border-color: #007b5e;
-    box-shadow: 0 0 0 2px rgb(6, 44, 35)
-}
+
 
 h1 {
   font-size: 1.8rem;
@@ -57,7 +57,7 @@ button {
   text-align: center;
   font-size: 1rem;
   font-weight: 500;
-  background-color: rgb(4, 104, 4);
+  background-color: rgb(20, 97, 20);
   color: white;
   border: none;
   cursor: pointer;
@@ -66,7 +66,19 @@ button {
 }
 
 button:hover {
-  background-color: green;
+  background-color: rgb(9, 171, 9);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.redirect{
+  color: gray;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

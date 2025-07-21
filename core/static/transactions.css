@@ -40,13 +40,6 @@ body{
     color: rgb(34, 158, 30);
 }
 
-.navbar .href{
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    font-size: 18px;
-    margin-left: 50px;
-}
 
 a{
     font-size: 20px;
