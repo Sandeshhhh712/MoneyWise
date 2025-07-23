@@ -93,8 +93,9 @@ def IncomeView(request:HttpRequest):
                 data:Income=form.save(commit=False)
                 data.user_id=user
                 data.save()
-                return render(request, 'index.html', context={"form":form})
-        return render(request, 'income.html', context={"form":form})
+                print("Hello")
+                return redirect('Index')
+        return render(request, 'index.html', context={"form":IncomeForm()})
     
 
 
