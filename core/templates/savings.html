@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings</title>
+    <link rel="stylesheet" href="/core/static/savings.css">
+</head>
+<body>
+     <button class="back-btn" onclick="goBack()">
+        <span>←</span>
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <div class="savings-icon">💎</div>
+            <h1 class="page-title">Add Savings</h1>
+            <p class="page-subtitle">Build your financial future one rupee at a time</p>
+        </div>
+
+        <div class="form-card">
+            <div class="savings-goal">
+                <div class="goal-title">
+                    <span>🎯</span>
+                    Smart Savings Tip
+                </div>
+                <div class="goal-text">
+                    Every rupee saved today is an investment in your tomorrow. Set aside money regularly to build a strong financial foundation.
+                </div>
+            </div>
+
+            <form id="savingsForm" method="POST" action="/add-savings">
+                <div class="form-group">
+                    <label class="form-label" for="amount">Amount Saved</label>
+                    <div class="amount-wrapper">
+                        <span class="currency-symbol">रु</span>
+                        <input type="number" id="amount" name="amount" class="form-input amount-input" placeholder="0.00" step="0.01" required>
+                    </div>
+                    <div class="quick-amounts">
+                        <span class="quick-amount" onclick="setAmount(1000)">रु 1,000</span>
+                        <span class="quick-amount" onclick="setAmount(2500)">रु 2,500</span>
+                        <span class="quick-amount" onclick="setAmount(5000)">रु 5,000</span>
+                        <span class="quick-amount" onclick="setAmount(10000)">रु 10,000</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="date">Date Saved</label>
+                    <input type="date" id="date" name="date" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="description">Savings Description</label>
+                    <textarea id="description" name="description" class="form-textarea" placeholder="What is this savings for? e.g., Emergency fund, Vacation, New laptop, etc." required></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="goBack()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Savings</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('date').valueAsDate = new Date();
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function setAmount(amount) {
+            document.getElementById('amount').value = amount;
+            document.getElementById('amount').focus();
+        }
+
+        // Form validation and submission
+        document.getElementById('savingsForm').addEventListener('submit', function(e) {
+            const amount = document.getElementById('amount').value;
+            const date = document.getElementById('date').value;
+            const description = document.getElementById('description').value;
+
+            if (!amount || !date || !description) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (parseFloat(amount) <= 0) {
+                e.preventDefault();
+                alert('Please enter a valid positive amount.');
+                return;
+            }
+        });
+
+        // Format number input
+        document.getElementById('amount').addEventListener('input', function(e) {
+            let value = e.target.value;
+            if (value && !isNaN(value)) {
+                // Add thousand separators for display (optional)
+                // You can implement this if needed
+            }
+        });
+    </script>
+</body>
+</html>

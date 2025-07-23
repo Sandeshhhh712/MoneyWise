@@ -12,9 +12,43 @@
         <div class="content">
         <h1>MoneyWise</h1>
         <h3>Welcome back, {{ user}}</h3>
-        <div id="pfp"></div>
+        <div class="profile-wrapper">
+            <div class="profile-icon" onclick="toggleDropdown()">P</div>
+            <div class="profile-dropdown" id="profileDropdown">
+                <div class="dropdown-header">
+                    <div class="dropdown-user-info">
+                        <h4>John Doe</h4>
+                        <p>john.doe@email.com</p>
+                    </div>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">
+                        <span class="icon-profile"></span>
+                        My Profile
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <span class="icon-settings"></span>
+                        Settings
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <span class="icon-security"></span>
+                        Privacy & Security
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <span class="icon-help"></span>
+                        Help & Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout">
+                        <span class="icon-logout"></span>
+                        Sign Out
+                    </a>
+                </div>
+            </div>
+            </div>
+            </div>
         </div>
-    </div>
     <div class="Text">
         <h1 id="jpt">Your Financial Overview</h1>
         <p id="haude">Track your money and make informed decisions</p>
@@ -79,155 +113,57 @@
                 </div>
             {% endfor %}
 
-
+ 
         </div>
     </div>
-    <button class="floating-btn" onclick="openModal()">
+    
+    <!-- Floating menu options -->
+    <div class="floating-menu" id="floatingMenu">
+        <a href="/core/templates/savings.html" class="menu-option">💎 Add Savings</a>
+        <a href="/core/templates/expense.html" class="menu-option">💳 Add Expenses</a>
+        <a href="/core/templates/income.html" class="menu-option">💸 Add Income</a>
+    </div>
+    
+    <button class="floating-btn" onclick="toggleFloatingMenu()" id="floatingBtn">
         <span>+</span>
     </button>
-
-    <!-- Modal -->
-    <div id="addModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add Transaction</h2>
-                <span class="close" onclick="closeModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="form-tabs">
-                    <button class="tab-btn active" onclick="switchTab('income')">Income</button>
-                    <button class="tab-btn" onclick="switchTab('expense')">Expense</button>
-                    <button class="tab-btn" onclick="switchTab('savings')">Savings</button>
-                </div>
-
-                <!-- Income Form -->
-                <form id="income-form" class="tab-content active">
-                    <div class="form-group">
-                        <label for="income-description">Description</label>
-                        <input type="text" id="income-description" name="description" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="income-amount">Amount</label>
-                        <div class="amount-input-wrapper">
-                            <span class="currency-symbol">रु</span>
-                            <input type="number" id="income-amount" name="amount" step="0.01" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="income-notes">Notes</label>
-                        <textarea id="income-notes" name="notes" placeholder="Optional notes..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Add Income</button>
-                </form>
-
-                <!-- Expense Form -->
-                <form id="expense-form" class="tab-content">
-                    <div class="form-group">
-                        <label for="expense-category">Category</label>
-                        <select id="expense-category" name="category" required>
-                            <option value="">Select category</option>
-                            <option value="Food">Food & Dining</option>
-                            <option value="Transport">Transportation</option>
-                            <option value="Shopping">Shopping</option>
-                            <option value="Entertainment">Entertainment</option>
-                            <option value="Bills">Bills & Utilities</option>
-                            <option value="Healthcare">Healthcare</option>
-                            <option value="Education">Education</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="expense-description">Description</label>
-                        <input type="text" id="expense-description" name="description" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="expense-amount">Amount</label>
-                        <div class="amount-input-wrapper">
-                            <span class="currency-symbol">रु</span>
-                            <input type="number" id="expense-amount" name="amount" step="0.01" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="expense-notes">Notes</label>
-                        <textarea id="expense-notes" name="notes" placeholder="Optional notes..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Add Expense</button>
-                </form>
-
-                <!-- Savings Form -->
-                <form id="savings-form" class="tab-content">
-                    <div class="form-group">
-                        <label for="savings-description">Description</label>
-                        <input type="text" id="savings-description" name="description" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="savings-amount">Amount</label>
-                        <div class="amount-input-wrapper">
-                            <span class="currency-symbol">रु</span>
-                            <input type="number" id="savings-amount" name="amount" step="0.01" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="savings-notes">Notes</label>
-                        <textarea id="savings-notes" name="notes" placeholder="Optional notes..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Add Savings</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
+    
     <script>
-        function openModal() {
-            document.getElementById('addModal').style.display = 'block';
-        }
+// Profile dropdown functionality
+function toggleDropdown() {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.classList.toggle('show');
+}
 
-        function closeModal() {
-            document.getElementById('addModal').style.display = 'none';
-        }
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const profileWrapper = document.querySelector('.profile-wrapper');
+    const dropdown = document.getElementById('profileDropdown');
+    
+    if (!profileWrapper.contains(event.target)) {
+        dropdown.classList.remove('show');
+    }
+});
 
-        function switchTab(tabName) {
-            // Remove active class from all tabs and content
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
-            // Add active class to clicked tab and corresponding content
-            event.target.classList.add('active');
-            document.getElementById(tabName + '-form').classList.add('active');
-        }
+// Floating menu functionality
+function toggleFloatingMenu() {
+    const menu = document.getElementById('floatingMenu');
+    const btn = document.getElementById('floatingBtn');
+    
+    menu.classList.toggle('show');
+    btn.classList.toggle('active');
+}
 
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById('addModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-
-        // Form submission handlers
-        document.getElementById('income-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Handle income form submission here
-            console.log('Income form submitted');
-            // You can add your form submission logic here
-            closeModal();
-        });
-
-        document.getElementById('expense-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Handle expense form submission here
-            console.log('Expense form submitted');
-            // You can add your form submission logic here
-            closeModal();
-        });
-
-        document.getElementById('savings-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Handle savings form submission here
-            console.log('Savings form submitted');
-            // You can add your form submission logic here
-            closeModal();
-        });
+// Close floating menu when clicking outside
+document.addEventListener('click', function(event) {
+    const floatingBtn = document.getElementById('floatingBtn');
+    const floatingMenu = document.getElementById('floatingMenu');
+    
+    if (!floatingBtn.contains(event.target) && !floatingMenu.contains(event.target)) {
+        floatingMenu.classList.remove('show');
+        floatingBtn.classList.remove('active');
+    }
+});
     </script>
 </body>
 </html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses</title>
+    <link rel="stylesheet" href="/core/static/expense.css">
+</head>
+<body>
+     <button class="back-btn" onclick="goBack()">
+        <span>←</span>
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <div class="expense-icon">💸</div>
+            <h1 class="page-title">Add Expense</h1>
+            <p class="page-subtitle">Track your spending and expenses</p>
+        </div>
+
+        <div class="form-card">
+            <form id="expenseForm" method="POST" action="/add-expense">
+                <div class="form-group">
+                    <label class="form-label" for="amount">Amount</label>
+                    <div class="amount-wrapper">
+                        <span class="currency-symbol">रु</span>
+                        <input type="number" id="amount" name="amount" class="form-input amount-input" placeholder="0.00" step="0.01" required>
+                    </div>
+                    <div class="quick-amounts">
+                        <span class="quick-amount" onclick="setAmount(500)">रु 500</span>
+                        <span class="quick-amount" onclick="setAmount(1000)">रु 1,000</span>
+                        <span class="quick-amount" onclick="setAmount(2500)">रु 2,500</span>
+                        <span class="quick-amount" onclick="setAmount(5000)">रु 5,000</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="category">Expense Category</label>
+                    <select id="category" name="category" class="form-select" required>
+                        <option value="">Select expense category</option>
+                        <option value="food">🍕 Food & Dining</option>
+                        <option value="transportation">🚗 Transportation</option>
+                        <option value="shopping">🛍️ Shopping</option>
+                        <option value="entertainment">🎬 Entertainment</option>
+                        <option value="bills">📋 Bills & Utilities</option>
+                        <option value="healthcare">🏥 Healthcare</option>
+                        <option value="education">📚 Education</option>
+                        <option value="travel">✈️ Travel</option>
+                        <option value="groceries">🛒 Groceries</option>
+                        <option value="rent">🏠 Rent/Housing</option>
+                        <option value="insurance">🛡️ Insurance</option>
+                        <option value="phone">📱 Phone & Internet</option>
+                        <option value="fuel">⛽ Fuel</option>
+                        <option value="clothing">👕 Clothing</option>
+                        <option value="gym">💪 Gym/Fitness</option>
+                        <option value="gifts">🎁 Gifts</option>
+                        <option value="personal">💄 Personal Care</option>
+                        <option value="office">🏢 Office Supplies</option>
+                        <option value="subscriptions">📺 Subscriptions</option>
+                        <option value="other">📝 Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="date">Date Spent</label>
+                    <input type="date" id="date" name="date" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea id="description" name="description" class="form-textarea" placeholder="Describe what you spent money on..." required></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="goBack()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Expense</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('date').valueAsDate = new Date();
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function setAmount(amount) {
+            document.getElementById('amount').value = amount;
+            document.getElementById('amount').focus();
+        }
+
+        // Form validation and submission
+        document.getElementById('expenseForm').addEventListener('submit', function(e) {
+            const amount = document.getElementById('amount').value;
+            const category = document.getElementById('category').value;
+            const date = document.getElementById('date').value;
+            const description = document.getElementById('description').value;
+
+            if (!amount || !category || !date || !description) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (parseFloat(amount) <= 0) {
+                e.preventDefault();
+                alert('Please enter a valid positive amount.');
+                return;
+            }
+        });
+
+        // Format number input
+        document.getElementById('amount').addEventListener('input', function(e) {
+            let value = e.target.value;
+            if (value && !isNaN(value)) {
+                // Add thousand separators for display (optional)
+                // You can implement this if needed
+            }
+        });
+    </script>
+</body>
+</html>
