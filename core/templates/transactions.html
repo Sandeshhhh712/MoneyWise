@@ -7,15 +7,47 @@
     <link rel="stylesheet" href="/core/static/transactions.css">
 </head>
 <body>
-    <div class="navbar">
+ <div class="navbar">
         <div class="content">
-            <h1>MoneyWise</h1>
-            <div class="naam">
-            <h3>Sandesh Dhakal</h3>
-            <div id="pfp">S</div>
+        <h1>MoneyWise</h1>
+        <h3>Welcome back, {{ user}}</h3>
+        <div class="profile-wrapper">
+            <div class="profile-icon" onclick="toggleDropdown()">P</div>
+            <div class="profile-dropdown" id="profileDropdown">
+                <div class="dropdown-header">
+                    <div class="dropdown-user-info">
+                        <h4>John Doe</h4>
+                        <p>john.doe@email.com</p>
+                    </div>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">
+                        <span class="icon-profile"></span>
+                        My Profile
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <span class="icon-settings"></span>
+                        Settings
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <span class="icon-security"></span>
+                        Privacy & Security
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <span class="icon-help"></span>
+                        Help & Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout">
+                        <span class="icon-logout"></span>
+                        Sign Out
+                    </a>
+                </div>
+            </div>
+            </div>
             </div>
         </div>
-    </div>
     <div class="Text">
         <h1 id="jpt">All Transactions</h1>
         <p id="haude">View and manage your financial transactions</p>
@@ -106,7 +138,13 @@
                         <p>Food & Dining • Today, 2:30 PM</p>
                     </div>
                 </div>
-                <div class="transaction-amount amount-negative">-$24.99</div>
+                <div class="transaction-right">
+                    <div class="transaction-amount amount-negative">-$24.99</div>
+                    <div class="transaction-actions">
+                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
+                    </div>
+                </div>
             </div>
 
             <div class="transaction-item">
@@ -116,7 +154,13 @@
                         <p>Income • Yesterday, 9:00 AM</p>
                     </div>
                 </div>
-                <div class="transaction-amount amount-positive">+$3,250.00</div>
+                <div class="transaction-right">
+                    <div class="transaction-amount amount-positive">+$3,250.00</div>
+                    <div class="transaction-actions">
+                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
+                    </div>
+                </div>
             </div>
 
             <div class="transaction-item">
@@ -126,7 +170,13 @@
                         <p>Transportation • Yesterday, 6:45 PM</p>
                     </div>
                 </div>
-                <div class="transaction-amount amount-negative">-$45.20</div>
+                <div class="transaction-right">
+                    <div class="transaction-amount amount-negative">-$45.20</div>
+                    <div class="transaction-actions">
+                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
+                    </div>
+                </div>
             </div>
 
             <div class="transaction-item">
@@ -136,7 +186,13 @@
                         <p>Shopping • 2 days ago</p>
                     </div>
                 </div>
-                <div class="transaction-amount amount-negative">-$89.34</div>
+                <div class="transaction-right">
+                    <div class="transaction-amount amount-negative">-$89.34</div>
+                    <div class="transaction-actions">
+                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
+                    </div>
+                </div>
             </div>
 
             <div class="transaction-item">
@@ -146,20 +202,33 @@
                         <p>Entertainment • 3 days ago</p>
                     </div>
                 </div>
-                <div class="transaction-amount amount-negative">-$15.99</div>
+                <div class="transaction-right">
+                    <div class="transaction-amount amount-negative">-$15.99</div>
+                    <div class="transaction-actions">
+                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
+                    </div>
+                </div>
             </div>
 
             </div>
         </div>
     <script>
-  const buttons = document.querySelectorAll('.btn');
+        // Profile dropdown functionality
+function toggleDropdown() {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.classList.toggle('show');
+}
 
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      buttons.forEach(btn => btn.classList.remove('active')); // remove blue from all
-      button.classList.add('active'); // add blue to clicked one
-    });
-  });
-</script>
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const profileWrapper = document.querySelector('.profile-wrapper');
+    const dropdown = document.getElementById('profileDropdown');
+    
+    if (!profileWrapper.contains(event.target)) {
+        dropdown.classList.remove('show');
+    }
+});
+    </script>
 </body>
 </html>

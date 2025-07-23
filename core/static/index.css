@@ -174,15 +174,6 @@
         .icon-help::before { content: "❓"; }
         .icon-logout::before { content: "🚪"; }
 
-        #pfp p{
-              font-size: 2.5rem;
-          font-weight: 700;
-          color: white;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          letter-spacing: 2px;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
         .Text{
             padding-top: 50px;
             max-width: 1700px;
