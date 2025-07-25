@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savings</title>
-    <link rel="stylesheet" href="/core/static/savings.css">
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'savings.css'%}">
 </head>
 <body>
      <button class="back-btn" onclick="goBack()">

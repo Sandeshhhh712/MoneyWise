@@ -77,11 +77,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'  # URL prefix for static files
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # for production use
 
-STATICFILES_DIRS = []  # leave empty unless you have extra global static folders
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'core', 'static'),
+]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # where collectstatic puts all files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
