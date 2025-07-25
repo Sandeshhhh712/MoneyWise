@@ -19,7 +19,8 @@
         </div>
 
         <div class="form-card">
-            <form id="expenseForm" method="POST" action="/add-expense">
+            <form id="expenseForm" method="POST" action="{% url 'Expense'%}">
+                {% csrf_token%}
                 <div class="form-group">
                     <label class="form-label" for="amount">Amount</label>
                     <div class="amount-wrapper">
@@ -35,31 +36,25 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="category">Expense Category</label>
-                    <select id="category" name="category" class="form-select" required>
-                        <option value="">Select expense category</option>
-                        <option value="food">🍕 Food & Dining</option>
-                        <option value="transportation">🚗 Transportation</option>
-                        <option value="shopping">🛍️ Shopping</option>
-                        <option value="entertainment">🎬 Entertainment</option>
-                        <option value="bills">📋 Bills & Utilities</option>
-                        <option value="healthcare">🏥 Healthcare</option>
-                        <option value="education">📚 Education</option>
-                        <option value="travel">✈️ Travel</option>
-                        <option value="groceries">🛒 Groceries</option>
-                        <option value="rent">🏠 Rent/Housing</option>
-                        <option value="insurance">🛡️ Insurance</option>
-                        <option value="phone">📱 Phone & Internet</option>
-                        <option value="fuel">⛽ Fuel</option>
-                        <option value="clothing">👕 Clothing</option>
-                        <option value="gym">💪 Gym/Fitness</option>
-                        <option value="gifts">🎁 Gifts</option>
-                        <option value="personal">💄 Personal Care</option>
-                        <option value="office">🏢 Office Supplies</option>
-                        <option value="subscriptions">📺 Subscriptions</option>
-                        <option value="other">📝 Other</option>
+                    <label class="form-label" for="category">Category</label>
+                    <select id="category" name="category" class="form-input" required>
+                        <option value="">Choose one</option>
+                        <option value="food and dining">Food And Dining </option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="rent">Rent</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="education">Education</option>
+                        <option value="medical">Medical</option>
+                        <option value="groceries">Groceries</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="travel">Travel</option>
+                        <option value="loan payment">Loan Payment</option>
+                        <option value="insurance">Insurance</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="gadgets">Gadgets</option>
+                        <option value="stationary">Stationary</option>
                     </select>
-                </div>
 
                 <div class="form-group">
                     <label class="form-label" for="date">Date Spent</label>

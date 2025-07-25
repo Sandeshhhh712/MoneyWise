@@ -19,7 +19,8 @@
         </div>
 
         <div class="form-card">
-            <form id="incomeForm" method="POST" action="/add-income">
+            <form id="incomeForm" method="POST" action="{% url 'Income'%}">
+                {% csrf_token%}
                 <div class="form-group">
                     <label class="form-label" for="amount">Amount</label>
                     <div class="amount-wrapper">

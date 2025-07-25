@@ -19,7 +19,7 @@ class ExpenseCategory(models.TextChoices):
     Food="food and dining", "Food And Dining",
     Entertainment="entertainment", "Entertainment",
     Rent="rent", "Rent",
-    Trnasportation="transportation", "Transportation",
+    Transportation="transportation", "Transportation",
     Education="education", "Education",
     Medical="medical", "Medical",
     Groceries="groceries", "Groceries",

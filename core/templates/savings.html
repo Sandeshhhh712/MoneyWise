@@ -29,7 +29,8 @@
                 </div>
             </div>
 
-            <form id="savingsForm" method="POST" action="/add-savings">
+            <form id="savingsForm" method="POST" action="{% url 'Savings'%}">
+                {% csrf_token %}
                 <div class="form-group">
                     <label class="form-label" for="amount">Amount Saved</label>
                     <div class="amount-wrapper">
@@ -43,7 +44,27 @@
                         <span class="quick-amount" onclick="setAmount(10000)">रु 10,000</span>
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label class="form-label" for="category">Category</label>
+                    <select id="category" name="category" class="form-input" required>
+                        <option value="">Choose one</option>
+                        <option value="food and dining">Food And Dining </option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="rent">Rent</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="education">Education</option>
+                        <option value="medical">Medical</option>
+                        <option value="groceries">Groceries</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="travel">Travel</option>
+                        <option value="loan payment">Loan Payment</option>
+                        <option value="insurance">Insurance</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="gadgets">Gadgets</option>
+                        <option value="stationary">Stationary</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label class="form-label" for="date">Date Saved</label>
                     <input type="date" id="date" name="date" class="form-input" required>

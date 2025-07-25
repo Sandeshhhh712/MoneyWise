@@ -119,94 +119,15 @@
     
     <!-- Floating menu options -->
     <div class="floating-menu" id="floatingMenu">
-        <a href="/core/templates/savings.html" class="menu-option">💎 Add Savings</a>
-        <a href="/core/templates/expense.html" class="menu-option">💳 Add Expenses</a>
-        <a href="/core/templates/income.html" class="menu-option">💸 Add Income</a>
+        <a href="{% url 'Savings'%}" class="menu-option">💎 Add Savings</a>
+        <a href="{% url 'Expense'%}" class="menu-option">💳 Add Expenses</a>
+        <a href="{% url 'Income'%}" class="menu-option">💸 Add Income</a>
     </div>
     
     <button class="floating-btn" onclick="toggleFloatingMenu()" id="floatingBtn">
         <span>+</span>
     </button>
-
-    <!-- Modal -->
-    <div id="addModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add Transaction</h2>
-                <span class="close" onclick="closeModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="form-tabs">
-                    <button class="tab-btn active" onclick="switchTab('income')">Income</button>
-                    <button class="tab-btn" onclick="switchTab('expense')">Expense</button>
-                    <button class="tab-btn" onclick="switchTab('savings')">Savings</button>
-                </div>
-
-                <!-- Income Form -->
-                <form id="income-form" class="tab-content active" method="post" action="{% url 'Income'%}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" id="income-description" name="description" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="amount">Amount</label>
-                        <div class="amount-input-wrapper">
-                            <span class="currency-symbol">रु</span>
-                            <input type="number" id="income-amount" name="amount" step="0.01" required>
-                        </div>
-                    </div>
-                   
-                    <button type="submit" class="submit-btn">Add Income</button>
-                </form>
-
-                <!-- Expense Form -->
-                <form id="expense-form" class="tab-content">
-                    <div class="form-group">
-                        <label for="expense-category">Category</label>
-                        <select type="text" id="expense-category" name="category" required> 
-                    </div>
-                    <div class="form-group">
-                        <label for="expense-description">Description</label>
-                        <input type="text" id="expense-description" name="description" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="expense-amount">Amount</label>
-                        <div class="amount-input-wrapper">
-                            <span class="currency-symbol">रु</span>
-                            <input type="number" id="expense-amount" name="amount" step="0.01" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="expense-notes">Notes</label>
-                        <textarea id="expense-notes" name="notes" placeholder="Optional notes..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Add Expense</button>
-                </form>
-
-                <!-- Savings Form -->
-                <form id="savings-form" class="tab-content">
-                    <div class="form-group">
-                        <label for="savings-description">Description</label>
-                        <input type="text" id="savings-description" name="description" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="savings-amount">Amount</label>
-                        <div class="amount-input-wrapper">
-                            <span class="currency-symbol">रु</span>
-                            <input type="number" id="savings-amount" name="amount" step="0.01" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="savings-notes">Notes</label>
-                        <textarea id="savings-notes" name="notes" placeholder="Optional notes..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Add Savings</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
+    
     <script>
 // Profile dropdown functionality
 function toggleDropdown() {

@@ -71,7 +71,7 @@ def ExpenseView(request:HttpRequest):
                 data:Expense=form.save(commit=False)
                 data.user_id=user
                 data.save()
-                return render(request, 'index.html', context={"form":form})
+                return redirect('Index')
         return render(request, 'expense.html', context={"form":form})
     
 
@@ -95,7 +95,7 @@ def IncomeView(request:HttpRequest):
                 data.save()
                 print("Hello")
                 return redirect('Index')
-        return render(request, 'index.html', context={"form":IncomeForm()})
+        return render(request, 'income.html', context={"form":IncomeForm()})
     
 
 
@@ -115,7 +115,9 @@ def SavingsView(request:HttpRequest):
                 data:Savings=form.save(commit=False)
                 data.user_id=user
                 data.save()
-                return render(request, 'index.html', context={"form":form})
+                return redirect('Index')
+            else:
+                print(form.errors)
         return render(request, 'savings.html', context={"form":form})
     
 
