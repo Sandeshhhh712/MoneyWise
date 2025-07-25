@@ -77,8 +77,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'core/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'  # URL prefix for static files
+
+STATICFILES_DIRS = []  # leave empty unless you have extra global static folders
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # where collectstatic puts all files
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
