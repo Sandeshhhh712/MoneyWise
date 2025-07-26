@@ -3,6 +3,8 @@ from pathlib import Path
 import dj_database_url
 from pathlib import Path
 
+AUTH_USER_MODEL = 'core.User'
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('django-insecure-!%zfw$9bkf^!bd)z9(i)bju52$5r3-%5d5#qlh+a&5aiiirx*!', 'OV6BzydeDzCBZrJSoFLU2tK_XYgEfRGV1T6aJYe39ahg5aS87-RX3HHbxcDb898rvtA')
 
