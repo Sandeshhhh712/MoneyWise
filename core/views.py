@@ -21,7 +21,8 @@ def RegisterUserView(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])  # Hash password
             user.save()
-            login(request, user)  # Optional: auto-login after registration
+            login(request, user)
+            request.session['user_id'] = user.id 
             return redirect('Index')  # Replace with your homepage URL name
     else:
         form = RegisterUserForm()
@@ -34,7 +35,8 @@ def LoginView(request):
         user = authenticate(request, email=email, password=password)
         if user:
             login(request, user)
-            return redirect('home')
+            request.session['user_id'] = user.id 
+            return redirect('Index')
         else:
             messages.error(request, 'Invalid email or password.')
     return render(request, 'login.html')
@@ -58,6 +60,7 @@ def ExpenseView(request:HttpRequest):
                 data:Expense=form.save(commit=False)
                 data.user_id=user
                 data.save()
+
                 return redirect('Index')
         return render(request, 'expense.html', context={"form":form})
     
