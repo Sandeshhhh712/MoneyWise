@@ -5,15 +5,15 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
-class User(models.Model):
-    id=models.BigAutoField(primary_key=True)
-    first_name=models.CharField(max_length=150)
-    last_name=models.CharField(max_length=150)
-    password=models.CharField()
-    email=models.EmailField(unique=True)
-    age=models.IntegerField()
-    created_at=models.DateField(auto_now_add=True)
+class User(AbstractUser):
+    email = models.EmailField(unique=True)
+    age = models.IntegerField(blank=True, null=True)
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+    
+    def __str__(self):
+        return self.username
 
 class ExpenseCategory(models.TextChoices):
     Food="food and dining", "Food And Dining",

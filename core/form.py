@@ -5,7 +5,7 @@ class RegisterUserForm(forms.ModelForm):
     password=forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model=User
-        fields=[ 'first_name', 'last_name', 'age','email','password']
+        fields=[ 'first_name', 'last_name', 'age','username','email','password']
 
 class LoginForm(forms.ModelForm):
     class Meta:

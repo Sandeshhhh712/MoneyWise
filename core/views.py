@@ -2,55 +2,42 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 from django.http import HttpRequest
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login , authenticate
 from .models import User, Expense, Income, Savings
 from .form import RegisterUserForm, LoginForm, ExpenseForm, IncomeForm, SavingsForm
 from datetime import datetime, timedelta
 from django.utils import timezone
 from itertools import chain
 from operator import itemgetter
+from django.contrib import messages
 
 # Create your views here.
 
 
-def RegisterUserView(request:HttpRequest):
-    form = RegisterUserForm()
-
-    if request.method == "POST":
+def RegisterUserView(request):
+    if request.method == 'POST':
         form = RegisterUserForm(request.POST)
-        if User.objects.filter(email=request.POST.get('email')).exists():
-            return render(request, 'register.html', context={"form":form, "error":"User with this email already exist"})
-        else: 
-            if form.is_valid():
-                user:User = form.save(commit=False)
-                user.password = make_password(form.cleaned_data['password'])
-                user.save()
-                return redirect('Login')
-           
-    return render(request, 'register.html', {"form": form})
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])  # Hash password
+            user.save()
+            login(request, user)  # Optional: auto-login after registration
+            return redirect('Index')  # Replace with your homepage URL name
+    else:
+        form = RegisterUserForm()
+    return render(request, 'register.html', {'form': form})
 
-
-
-def LoginView(request:HttpRequest):
-    form=LoginForm()
-    if request.method=="POST":
-        password=request.POST.get('password')
-        email=request.POST.get('email')
-
-        try:
-            user=User.objects.get(email=email)
-            if user==None:
-                return render(request, 'login.html', {"form":form, "error":" Invalid username"})
-            else:
-                verify_password=check_password(password, user.password)
-                if verify_password:
-                    request.session['user_id'] = user.id
-                    return redirect('Index')
-                return render(request, 'login.html', context={"form":form, "error":"Incorrect password"})
-        except:
-            return render(request, 'login.html', {"form":form, "error":" Invalid username"})
-        
-    return render(request, 'login.html', context={"form":form})
+def LoginView(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, email=email, password=password)
+        if user:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Invalid email or password.')
+    return render(request, 'login.html')
 
 
 def ExpenseView(request:HttpRequest):
