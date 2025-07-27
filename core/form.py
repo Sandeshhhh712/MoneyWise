@@ -17,18 +17,18 @@ class ExpenseForm(forms.ModelForm):
     description=forms.CharField(widget=forms.Textarea, required=False)
     class Meta:
         model=Expense
-        fields=['category', 'amount', 'description']
+        fields=['category', 'amount', 'description', 'spent_date']
 
 
 class IncomeForm(forms.ModelForm):
     description=forms.CharField(widget=forms.Textarea, required=False)
     class Meta:
         model=Income
-        fields=['amount', 'description']
+        fields=['amount', 'description','spent_date']
 
 
 class SavingsForm(forms.ModelForm):
     description=forms.CharField(widget=forms.Textarea, required=False)
     class Meta:
         model=Savings
-        fields=['category', 'amount', 'description']
+        fields=['category', 'amount', 'description', 'spent_date']

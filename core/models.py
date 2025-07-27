@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import date
 
 
 # Create your models here.
@@ -39,6 +40,7 @@ class Expense(models.Model):
     amount=models.IntegerField()
     description=models.TextField(blank=True, null=True)
     user_id=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    spent_date=models.DateField(default=date.today)
     created_at=models.DateTimeField(auto_now_add=True)
 
 
@@ -47,6 +49,7 @@ class Income(models.Model):
     amount=models.IntegerField()
     description=models.TextField(blank=True, null=True)
     user_id=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    spent_date=models.DateField(default=date.today)
     created_at=models.DateTimeField(auto_now_add=True)
 
 
@@ -56,4 +59,5 @@ class Savings(models.Model):
     amount=models.IntegerField()
     description=models.TextField(blank=True, null=True)
     user_id=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    spent_date=models.DateField(default=date.today)
     created_at=models.DateTimeField(auto_now_add=True)

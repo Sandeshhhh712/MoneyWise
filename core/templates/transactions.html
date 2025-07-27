@@ -11,14 +11,14 @@
  <div class="navbar">
         <div class="content">
         <h1>MoneyWise</h1>
-        <h3>Welcome back, {{ user}}</h3>
+        <h3>Welcome back, {{username}}</h3>
         <div class="profile-wrapper">
             <div class="profile-icon" onclick="toggleDropdown()">P</div>
             <div class="profile-dropdown" id="profileDropdown">
                 <div class="dropdown-header">
                     <div class="dropdown-user-info">
-                        <h4>John Doe</h4>
-                        <p>john.doe@email.com</p>
+                        <h4>{{first_name}}  {{last_name}}</h4>
+                        <p>{{email}}</p>
                     </div>
                 </div>
                 <div class="dropdown-menu">
@@ -40,7 +40,7 @@
                         Help & Support
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item logout">
+                    <a href="{% url 'Logout'%}" class="dropdown-item logout">
                         <span class="icon-logout"></span>
                         Sign Out
                     </a>
@@ -99,14 +99,14 @@
             <div class="header">
                 <div id='total'>Total Balance</div>
             </div>
-            <div class="Total amount"> -रु 9,800</div>
+            <div class="Total amount">{{balance}}</div>
         </div></a>
         <a href="#"><div class="box two">
             <div class="header">
                 <div id='total'>Total Income</div>
                 
             </div>
-            <div class="Total amount"> +रु 12,800</div>
+            <div class="Total amount">{{income}}</div>
            
         </div></a>
         <a href="#"><div class="box three">
@@ -114,7 +114,7 @@
                 <div id='total'>Total Expenses</div>
                 
             </div>
-            <div class="Total amount"> -रु 22,150</div>
+            <div class="Total amount">{{expense}}</div>
            
         </div></a>
         <a href="#"><div class="box four">
@@ -122,7 +122,7 @@
                 <div id='total'>Total Savings</div>
                 
             </div>
-            <div class="Total amount"> +रु 800</div>
+            <div class="Total amount">{{savings}}</div>
             
         </div></a>
     </div>
@@ -131,89 +131,26 @@
         <h2>Recent Transactions</h2>
         <p>Showing 1-10 of x transactions</p>
         </div>
-        <div class="body">
-            <div class="transaction-item">
-                <div class="transaction-info">
-                    <div class="transaction-details">
-                        <h4>Pizza Palace</h4>
-                        <p>Food & Dining • Today, 2:30 PM</p>
+        {%for i in transaction%}
+            <div class="body">
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-details">
+                            <h4>{{i.category}}</h4>
+                            <p>{{i.description}} • {{i.spent_date}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="transaction-right">
-                    <div class="transaction-amount amount-negative">-$24.99</div>
-                    <div class="transaction-actions">
-                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
-                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="transaction-item">
-                <div class="transaction-info">
-                    <div class="transaction-details">
-                        <h4>Salary Deposit</h4>
-                        <p>Income • Yesterday, 9:00 AM</p>
-                    </div>
-                </div>
-                <div class="transaction-right">
-                    <div class="transaction-amount amount-positive">+$3,250.00</div>
-                    <div class="transaction-actions">
-                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
-                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
+                    <div class="transaction-right">
+                        <div class="transaction-amount amount-negative">{{i.amount}}</div>
+                        <div class="transaction-actions">
+                            <a href="{% url 'Edit_Expense' pk=i.id%}"><button class="action-btn edit-btn">Edit</button></a>
+                            <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="transaction-item">
-                <div class="transaction-info">
-                    <div class="transaction-details">
-                        <h4>Gas Station</h4>
-                        <p>Transportation • Yesterday, 6:45 PM</p>
-                    </div>
-                </div>
-                <div class="transaction-right">
-                    <div class="transaction-amount amount-negative">-$45.20</div>
-                    <div class="transaction-actions">
-                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
-                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="transaction-item">
-                <div class="transaction-info">
-                    <div class="transaction-details">
-                        <h4>Grocery Store</h4>
-                        <p>Shopping • 2 days ago</p>
-                    </div>
-                </div>
-                <div class="transaction-right">
-                    <div class="transaction-amount amount-negative">-$89.34</div>
-                    <div class="transaction-actions">
-                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
-                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="transaction-item">
-                <div class="transaction-info">
-                    <div class="transaction-details">
-                        <h4>Netflix Subscription</h4>
-                        <p>Entertainment • 3 days ago</p>
-                    </div>
-                </div>
-                <div class="transaction-right">
-                    <div class="transaction-amount amount-negative">-$15.99</div>
-                    <div class="transaction-actions">
-                        <button class="action-btn edit-btn" onclick="editTransaction(this)">Edit</button>
-                        <button class="action-btn delete-btn" onclick="deleteTransaction(this)">Delete</button>
-                    </div>
-                </div>
-            </div>
-
-            </div>
-        </div>
+        {%endfor%}
+    </div>
     <script>
         // Profile dropdown functionality
 function toggleDropdown() {

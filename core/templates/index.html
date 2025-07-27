@@ -12,14 +12,14 @@
     <div class="navbar">
         <div class="content">
         <h1>MoneyWise</h1>
-        <h3>Welcome back, {{ user}}</h3>
+        <h3>Welcome back, {{username}}</h3>
         <div class="profile-wrapper">
             <div class="profile-icon" onclick="toggleDropdown()">P</div>
             <div class="profile-dropdown" id="profileDropdown">
                 <div class="dropdown-header">
                     <div class="dropdown-user-info">
-                        <h4>John Doe</h4>
-                        <p>john.doe@email.com</p>
+                        <h4>{{first_name}} {{last_name}}</h4>
+                        <p>{{email}}</p>
                     </div>
                 </div>
                 <div class="dropdown-menu">
@@ -41,7 +41,7 @@
                         Help & Support
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item logout">
+                    <a href="{% url 'Logout'%}" class="dropdown-item logout">
                         <span class="icon-logout"></span>
                         Sign Out
                     </a>
@@ -55,7 +55,7 @@
         <p id="haude">Track your money and make informed decisions</p>
     </div>
     <div class="boxes">
-        <a class="boxlink" href="/core/templates/transactions.html"><div class="box">
+        <a class="boxlink" href="{% url 'Transaction'%}"><div class="box">
             <div class="header">
                 <div id='total'>Total Balance</div>
                 <div id="icon">💰</div>
@@ -107,7 +107,7 @@
                     <div class="transaction-info">
                         <div class="transaction-details">
                             <h4>{{i.category}}</h4>
-                            <p>{{i.description}} •        {{i.created_at}}</p>
+                            <p>{{i.description}} •        {{i.spent_date}}</p>
                         </div>
                     </div>
                     <div class="transaction-amount amount-negative">{{i.amount}}</div>
